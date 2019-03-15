@@ -21,7 +21,7 @@ function buildCharts(sample) {
   var url = `/samples/${sample}`
   d3.json(url).then(function(response) {
     console.log(response);
-  };
+  });
   //create individual lists out of response JSON
   otu_ids_l = response.otu_ids;
   otu_labels_l = response.otu_labels;
