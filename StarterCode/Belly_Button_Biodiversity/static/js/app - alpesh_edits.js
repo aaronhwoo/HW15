@@ -18,9 +18,16 @@ function buildMetadata(sample) {
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
 
+    // d3.json(metadataURL).then(function (data) {
+    //   Object.entries(data).forEach(([key, value]) => {
+    //     panelMetadata.append("h6").text(`${key}: ${value}`
+    //     );
+    //   });
+    // }  
+
     d3.json(metadataURL).then(function(response){
-      Object.entries(response).forEach(([key, value]) => {
-        metadataPanel.append("h6").text(`${key}:${value}`);
+      Object.enteries(response).forEach(([key, value]) => {
+        panelMetadata.append("h6").text(`${key}:${value}`);
       });
     });
 
@@ -63,41 +70,28 @@ function buildCharts(sample) {
      width: 1500,
    };
 
-   Plotly.newPlot('bubble', bubbletrace1, layout);
-
   // @TODO: Build a Pie Chart
   // HINT: You will need to use slice() to grab the top 10 sample_values,
   // otu_ids, and labels (10 each).
   // Use sample_values as the values for the PIE Chart
   // Use out_ids as the lables for the pie chart
-  // Use out_labels as the hovertext for the chart  
-  
-  // var response_sorted = response.sort(0);
+  // Use out_labels as the hovertext for the chart
 
-  // // var sample_values_sorted = response.sample_values.sort();
-  // var otu_ids_sorted = response.otu_ids.sort();
-  // var otu_labels_sorted = response.otu_labels.sort();
 
-  //  var data = [{
-  //    values: response_sorted.sample_values.slice(0, 10),
-  //    labels: response_sorted.otu_ids.slice(0, 10),
-  //    hovertext: response_sorted.otu_labels.slice(0, 10),
-  //    type: 'pie',
-  //  }];
+   Plotly.newplot('bubble', bubbletrace1, layout);
 
-  var data = [{
-    values: response.sample_values.slice(0, 10),
-    labels: response.otu_ids.slice(0, 10),
-    hovertext: response.otu_labels.slice(0, 10),
-    type: 'pie',
-  }];
-
+   var data = [{
+     values: response.sample_values.slice(0, 10),
+     labels: response.otu_ids.slice(0, 10),
+     hovertext: response.otu_labels.slice(0, 10),
+     type: 'pie',
+   }];
 
    var layout = {
      showlegend: true,
    };
 
-   Plotly.newPlot('pie', data, layout);
+   Plotly.newplot('pie', data, layout);
    });
 }
 
